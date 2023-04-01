@@ -11,19 +11,23 @@ const LoginPage =(props)=>{
     const authenticator = (e)=>{
         e.preventDefault();
 
-
+        //Admin
         if(username === props.user[0][0] && password === props.user[0][1]){
-            localStorage.setItem("Admin", 1);
+            localStorage.setItem("User", "Admin");
         }
+        //User
         else if(username === props.user[1][0] && password === props.user[1][1]){
-            localStorage.setItem("User", 1);
+            localStorage.setItem("User", "User");
         }
+        //Hacker
         else if(username === props.user[2][0] && password === props.user[2][1]){
-            localStorage.setItem("Hacker", 1);
+            localStorage.setItem("User", "Hacker");
         }
         else{
             setErrorMSG('** Invalid username or password **');
+            localStorage.setItem("User", "null");
         }
+        props.changeUser(localStorage.getItem("User"));
         setUsername("");
         setPassword("");
     }
@@ -39,16 +43,13 @@ const LoginPage =(props)=>{
 
     
     return(
-        <div className="container">
-            <div>
+        <div style={props.style}>
                 <form onSubmit={authenticator}>
                     <input placeholder="Username" required type="text" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
                     <input placeholder="Password" required type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                     <button>Sign in</button>
                     <span>{errorMSG}</span>
                 </form>
-            </div>
-            
         </div>
     )
 }

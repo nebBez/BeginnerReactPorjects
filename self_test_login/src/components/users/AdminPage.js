@@ -1,9 +1,11 @@
+import LogoutBtn from "./LogoutBtn";
 
 
-const AdminPage =()=>{
+const AdminPage =(props)=>{
     return(
-        <div>
-            
+        <div style={props.style}>
+            <h1>Admin</h1>
+            <LogoutBtn logOut={props.changeUser}/>
         </div>
     )
 }

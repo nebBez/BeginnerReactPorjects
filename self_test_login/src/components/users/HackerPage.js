@@ -1,9 +1,11 @@
+import LogoutBtn from "./LogoutBtn";
 
 
-const HackerPage =()=>{
+const HackerPage =(props)=>{
     return(
-        <div>
-            
+        <div style={props.style}>
+            <h1>Hacker</h1>
+            <LogoutBtn logOut={props.changeUser}/>
         </div>
     )
 }
